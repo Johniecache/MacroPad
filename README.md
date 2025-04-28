@@ -9,6 +9,7 @@ I've created my own hand-wired macro pad. It's a simple 3x3 keypad that has its 
 * Rust CLI for multithreaded log analysis
 
 #### Architecture Diagram
+![architecture_diagram](https://github.com/user-attachments/assets/a1dcac8c-d3f3-4a46-a603-4205250ca172)
 
 #### How to Run
 1. Flash firmware to ATmega32U4 Pro Micro
