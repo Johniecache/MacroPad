@@ -52,87 +52,106 @@ fn classifyLine(line: &str) -> LogType {
 fn filterLine(line: &str, log_type: Option<LogType>, date_filter: Option<&str>, keyword: Option<&str>) -> bool {
     let matches_type = match log_type { // if type is entered checks what type it is
         Some(t) => classifyLine(line) == t, // send line ot classifyLine method to see if its equal to one in list
-        None => true, // set to true
+        None => true, // otherwise dont filter
     };
 
-    let matches_date = match date_filter { // 
-        Some(d) => line.contains(d),
-        None => true,
+    let matches_date = match date_filter { // if a date filter exists match it
+        Some(d) => line.contains(d), // find anything line that has this date/between date
+        None => true, // otherwuse dont filter
     };
 
-    let matches_keyword = match keyword {
-        Some(k) => line.to_lowercase().contains(&k.to_lowercase()),
-        None => true,
+    let matches_keyword = match keyword { // if a keyword filter exists match it
+        Some(k) => line.to_lowercase().contains(&k.to_lowercase()), // find anything line that has this keyword
+        None => true, // otherwise dont filter
     };
 
-    matches_type && matches_date && matches_keyword
+    matches_type && matches_date && matches_keyword // must pass all 3 conditions to continue
 }
 
+/*
+    Functions for each thread which listens to receiver and updates shared counters safely.
+
+    Parameters:
+        rx:
+            receiver list
+        info:
+            info type
+        warn:
+            warn type
+        error:
+            error type
+        total_processed:
+            total processed lines after filters (if any)
+*/
 fn worker(rx: Receiver<String>, info: Arc<Mutex<usize>>, warn: Arc<Mutex<usize>>, error: Arc<Mutex<usize>>, total_processed: Arc<Mutex<usize>>) {
-    for line in rx.iter() {
-        match classifyLine(&line) {
-            LogType::Info => *info.lock().unwrap() += 1,
-            LogType::Warn => *warn.lock().unwrap() += 1,
-            LogType::Error => *error.lock().unwrap() += 1,
-            LogType::Other => {}
+    for line in rx.iter() { // loop over each incoming line
+        match classifyLine(&line) { // each line that matches will increment the accourding line
+            LogType::Info => *info.lock().unwrap() += 1, // if info then increase info counter
+            LogType::Warn => *warn.lock().unwrap() += 1, // if warn then increase warn counter
+            LogType::Error => *error.lock().unwrap() += 1, // if error then increase error counter
+            LogType::Other => {} // otherwise its something else/unrecognised
         }
-        *total_processed.lock().unwrap() += 1;
+        *total_processed.lock().unwrap() += 1; // always (no matter type) increase total
     }
 }
 
+/*
+    main function (so the programc can actually run).
+*/
 fn main() -> io::Result<()> {
-    let args: Vec<String> = env::args().collect();
-    let log_type_filter = args.get(1).and_then(|s| match s.to_lowercase().as_str() {
-        "info" => Some(LogType::Info),
-        "warn" => Some(LogType::Warn),
-        "error" => Some(LogType::Error),
-        _ => None,
+    let args: Vec<String> = env::args().collect(); // all command line args to a vector
+    let log_type_filter = args.get(1).and_then(|s| match s.to_lowercase().as_str() { // filters by log type
+        "info" => Some(LogType::Info), // info sets info
+        "warn" => Some(LogType::Warn), // warn sets warn
+        "error" => Some(LogType::Error), // error sets error
+        _ => None, // otherwise there is no filter
     });
-    let date_filter = args.get(2).map(|s| s.as_str());
-    let keyword_filter = args.get(3).map(|s| s.as_str());
+    let date_filter = args.get(2).map(|s| s.as_str()); // date filter
+    let keyword_filter = args.get(3).map(|s| s.as_str()); // keyword filter
 
-    let file = File::open(*LOG_FILE)?;
-    let reader = BufReader::new(file);
+    let file = File::open(*LOG_FILE)?; // tries to open log file, exit main if fails to do so
+    let reader = BufReader::new(file); // warps file in buffer reader to read file efficiency
 
-    let (tx, rx) = unbounded();
+    let (tx, rx) = unbounded(); // unbounded channel (tx for sending, rx for receiving)
 
-    let info_count = Arc::new(Mutex::new(0));
-    let warn_count = Arc::new(Mutex::new(0));
-    let error_count = Arc::new(Mutex::new(0));
-    let total_processed = Arc::new(Mutex::new(0));
+    let info_count = Arc::new(Mutex::new(0)); // initialize info counter to 0
+    let warn_count = Arc::new(Mutex::new(0)); // initialize warn counter to 0
+    let error_count = Arc::new(Mutex::new(0)); // initialize error counter to 0
+    let total_processed = Arc::new(Mutex::new(0)); // initialize total counter to 0
 
-    let num_threads = 4;
-    let mut handles = Vec::new();
+    let num_threads = 4; // hard code 4 worker threads
+    let mut handles = Vec::new(); // vector of threads
 
-    for _ in 0..num_threads {
-        let rx = rx.clone();
-        let info = Arc::clone(&info_count);
-        let warn = Arc::clone(&warn_count);
-        let error = Arc::clone(&error_count);
-        let total = Arc::clone(&total_processed);
+    for _ in 0..num_threads { // for each thread
+        let rx = rx.clone(); // clone receiver
+        let info = Arc::clone(&info_count); // clone info count
+        let warn = Arc::clone(&warn_count); // clone warn count
+        let error = Arc::clone(&error_count); // clone error count
+        let total = Arc::clone(&total_processed); // clone total count
 
-        handles.push(thread::spawn(move || worker(rx, info, warn, error, total)));
+        handles.push(thread::spawn(move || worker(rx, info, warn, error, total))); // make thread run the worker function
     }
 
-    let mut total_lines = 0;
-    for line in reader.lines() {
-        let line = line?;
-        if filterLine(&line, log_type_filter.clone(), date_filter, keyword_filter) {
-            tx.send(line).unwrap();
-            total_lines += 1;
+    let mut total_lines = 0; // local couter for how many lines sent to worker
+    for line in reader.lines() { // loop over every line
+        let line = line?; // handle each I/O line with grace
+        if filterLine(&line, log_type_filter.clone(), date_filter, keyword_filter) { // apply filters
+            tx.send(line).unwrap(); // if passed send to workers
+            total_lines += 1; // increment total lines that have been processed
         }
     }
-    drop(tx);
+    drop(tx); // close sending side of worker so they know they are done
 
-    for handle in handles {
-        handle.join().unwrap();
+    for handle in handles { // wait for all threads to finish
+        handle.join().unwrap(); // no error recovery (instant panic if dead)
     }
 
-    println!("Filtered lines read: {}", total_lines);
-    println!("Filtered log lines processed: {}", *total_processed.lock().unwrap());
-    println!("INFO lines: {}", *info_count.lock().unwrap());
-    println!("WARN lines: {}", *warn_count.lock().unwrap());
-    println!("ERROR lines: {}", *error_count.lock().unwrap());
+    println!("\n----------Summary----------\n"); // seperates from other output
+    println!("Filtered lines read: {}", total_lines); // filtered lines read in
+    println!("Filtered log lines processed: {}", *total_processed.lock().unwrap()); // filtered lines processed
+    println!("INFO lines: {}", *info_count.lock().unwrap()); // total info processed
+    println!("WARN lines: {}", *warn_count.lock().unwrap()); // total warn processed
+    println!("ERROR lines: {}", *error_count.lock().unwrap()); // total error processed
 
-    Ok(())
+    Ok(()) // end main if all was fine
 }
