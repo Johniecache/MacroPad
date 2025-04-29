@@ -8,3 +8,10 @@ This tool reads log files generated during MacroPad usage, applies various filte
 - Parses raw log files
 - Filters based on key events, timing, or user-defined flags
 - Fast execution with low memory usage
+
+## Instructions for downloading .rs file directly
+* Download the .rs file
+* Open powershell
+  * Enter: "cd FULL\\FILE\\LOCATION\\DIRECTORY"
+  * Enter: Cargo build --release
+* Move the created .exe into the "MacroPad" folder
