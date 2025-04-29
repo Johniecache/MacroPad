@@ -17,6 +17,7 @@ Basically a roadmap of what I would like to add and what needs to be done.
 * Print log lines (filtered) to console or to .txt file
 
 ### High Priority - Improvements
+* Add start and end date to Log Analyzer
 * Unit testing
 * Improved Error Handling
 * Automation
