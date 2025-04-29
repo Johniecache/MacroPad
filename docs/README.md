@@ -24,4 +24,19 @@ Items needed: Solder, Soldering Iron, Insulated Tinned Wire, Copper Wire (option
 12. Pre Solder the ends of all the Insulated Tinned Wire that has just been stripped.
 13. Pre Solder each "open" (each pin that isn't soldered to the Copper Wire) pin on all 9 of the Keyboard Switches.
 14. Solder one of the (black) Insulated Tinned Wire to any (prio conncecting) Copper Wire.
-15. Connect
+15. Connect the just connected Insulated Tinned Wire to the GND of the ATmega32U4 microcontroller device.
+16. Solder the remaining 9 (red) Insulated Tinned Wire to each of the exposed (open) pins on the Keyboard Switches.
+17. Solder the other ends of these (red) wires to the ATmega32U4 with this configuration (check docs/images.md for clarification):
+  * Keyboard Switch -> Pin #
+  * Bottom Left -> 10
+  * Bottom Middle -> 9
+  * Bottom Right -> 8
+  * Middle Left -> 7
+  * Middle Middle -> 6
+  * Middle Right -> 5
+  * Top Left -> 4
+  * Top Middle -> 3
+  * Top Right -> 2
+18. Plug the ATmega32U4 into PC via USB-c
+19. Flash the firmware to the Microcontroller
+20. Test
