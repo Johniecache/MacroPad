@@ -17,11 +17,11 @@ Items needed: Solder, Soldering Iron, Insulated Tinned Wire, Copper Wire (option
 7. Solder the Copper Wire to all of the 2-pins on the back of the Keyboard Switches that has just been lined up.
 8. Do this for the other 2 rows. In the end there should be 3 Copper Wire across 3 rows of Keyboard Switches.
    * If available use a multimeter to test the resistance across the copper at each Solder joint. The resistance should be zero across the Copper Wire.
-10. Solder the 4th piece of Copper Wire across all 3 of the other pieces of Copper Wire. This should look like an E when done where each line across is soldered to pins and the line going up is connecting them all.
+9. Solder the 4th piece of Copper Wire across all 3 of the other pieces of Copper Wire. This should look like an E when done where each line across is soldered to pins and the line going up is connecting them all.
    * If available test the resistance with a multimeter again to ensure all is connected properly.
-11. Cut 10 pieces of Insulated Tinned Wire to about 2 1/2 to 3 inches (9 red and 1 black if available).
-12. Strip about 1/8 inch on both ends of all the Insulated Tinned Wire that have just been cut to length.
-13. Pre Solder the ends of all the Insulated Tinned Wire that has just been stripped.
-14. Pre Solder each "open" (each pin that isn't soldered to the Copper Wire) pin on all 9 of the Keyboard Switches.
-15. Solder one of the (black) Insulated Tinned Wire to any (prio conncecting) Copper Wire.
-16. Connect
+10. Cut 10 pieces of Insulated Tinned Wire to about 2 1/2 to 3 inches (9 red and 1 black if available).
+11. Strip about 1/8 inch on both ends of all the Insulated Tinned Wire that have just been cut to length.
+12. Pre Solder the ends of all the Insulated Tinned Wire that has just been stripped.
+13. Pre Solder each "open" (each pin that isn't soldered to the Copper Wire) pin on all 9 of the Keyboard Switches.
+14. Solder one of the (black) Insulated Tinned Wire to any (prio conncecting) Copper Wire.
+15. Connect
