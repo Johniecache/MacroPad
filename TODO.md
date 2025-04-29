@@ -5,11 +5,6 @@ Basically a roadmap of what I would like to add and what needs to be done.
   * Update Readme files
   * Clearer Project descriptions
   * Elaborate on features
-  * Add setup instructions
-    * Hardware setup
-    * Soldering
-    * Wiring
-    * Case Assembly
   * Add use cases
 * Code Organization
   * MacroPadGUI needs to be broken up more
