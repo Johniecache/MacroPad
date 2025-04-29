@@ -7,7 +7,7 @@ use std::env;
 use crossbeam::channel::{unbounded, Receiver}; // message passing between threads
 use once_cell::sync::Lazy; // lazily initializing static variables
 
-static LOG_FILE: Lazy<&str> = Lazy::new(|| "CHANGE THIS TO YOUR .LOG FILE LOCATION"); // hard coded file location of where the .log file is
+static LOG_FILE: Lazy<&str> = Lazy::new(|| "C:\\Users\\Caleb\\Documents\\MacroPad\\resources\\MacroPad.log"); // hard coded file location of where the .log file is
 
 #[derive(Clone, PartialEq, Debug)] // automatically generates implementations for Clone, PartialEq and Debug for the enum
 enum LogType { // enum to categorize log lines
@@ -110,7 +110,7 @@ fn main() -> io::Result<()> {
     let keyword_filter = args.get(3).map(|s| s.as_str()); // keyword filter
 
     let file = File::open(*LOG_FILE)?; // tries to open log file, exit main if fails to do so
-    let reader = BufReader::new(file); // warps file in buffer reader to read file efficiency
+    let reader = BufReader::new(file); // wraps file in buffer reader to read file efficiently
 
     let (tx, rx) = unbounded(); // unbounded channel (tx for sending, rx for receiving)
 
@@ -132,11 +132,12 @@ fn main() -> io::Result<()> {
         handles.push(thread::spawn(move || worker(rx, info, warn, error, total))); // make thread run the worker function
     }
 
-    let mut total_lines = 0; // local couter for how many lines sent to worker
+    let mut total_lines = 0; // local counter for how many lines sent to worker
     for line in reader.lines() { // loop over every line
         let line = line?; // handle each I/O line with grace
         if filterLine(&line, log_type_filter.clone(), date_filter, keyword_filter) { // apply filters
-            tx.send(line).unwrap(); // if passed send to workers
+            println!("{}", line); // print the filtered line to the screen
+            tx.send(line).unwrap(); // if passed, send to workers
             total_lines += 1; // increment total lines that have been processed
         }
     }
@@ -146,7 +147,7 @@ fn main() -> io::Result<()> {
         handle.join().unwrap(); // no error recovery (instant panic if dead)
     }
 
-    println!("\n----------Summary----------\n"); // seperates from other output
+    println!("\n----------Summary----------\n"); // separates from other output
     println!("Filtered lines read: {}", total_lines); // filtered lines read in
     println!("Filtered log lines processed: {}", *total_processed.lock().unwrap()); // filtered lines processed
     println!("INFO lines: {}", *info_count.lock().unwrap()); // total info processed
