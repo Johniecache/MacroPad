@@ -15,6 +15,7 @@ class SystemTrayIcon:
         self.restore = restore # store function to restore the main window
         self.quit = quit # store function to quit the main window
 
+
     '''
     Create and configure system tray icon.
 

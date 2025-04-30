@@ -76,6 +76,10 @@ class UIController:
         self.analyze_log_button = tk.Button(self.master, text="Analyze Log", width=10, command=self.openAnalyzerWindow) # analyze log button
         self.analyze_log_button.grid(row=4, column=2, padx=5, pady=10) # position on grid
 
+        self.hide_button = tk.Button(self.master, text="Hide", width=10, command=self.master.hideWindow) # hide button
+        self.hide_button.grid(row=5, column=0, padx=5, pady=5) # position on grid
+
+
     '''
     Updates status of the GUI based on passed message.
 

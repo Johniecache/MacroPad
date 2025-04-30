@@ -8,6 +8,7 @@ from logic.ConnectionManager import ConnectionManager
 from logic.Logger import Logger
 from logic.MacroManager import MacroManager
 from logic.SerialManager import SerialManager
+from gui.SystemTrayIcon import SystemTrayIcon
 
 '''
 Controls the main functionalitu of the Macro Pad GUI
@@ -32,12 +33,37 @@ class MacroPadApp:
         self.logger = Logger() # initialize the logger
         self.connection_manager = ConnectionManager(self.serial_manager,self.macro_manager,self.updateStatus,self.toggleButtons,self.runAction) # initialize ConnectionManager
         self.ui_controller = UIController(master,self.serial_manager,self.macro_manager,self.auto_start_manager,self.connection_manager) # initialize UIController
+        self.ui_controller.master.hideWindow = self.hideWindow # pass method from uicontroller of hideWindow
+        self.tray_icon = SystemTrayIcon(self.restoreWindow, self.ui_controller.quitApplication) # initialize SystemTrayIcon
+        self.tray_icon.setupIcon() # setup the icon for the systems tray
 
         self.ui_controller.createWidgets() # create widgets for the GUI
 
         threading.Thread(target=self.connection_manager.connectionManager, daemon=True).start() # start the connection manager in the background thread
 
         self.master.after(10, lambda: threading.Thread(target=self.animateStatus, daemon=True).start()) # animate the status after a short delay
+
+    '''
+    Handles the hidding of the gui.
+
+    Parameters:
+        self:
+            instance of object
+    '''
+    def hideWindow(self):
+        self.master.withdraw()  # hide the main window
+        threading.Thread(target=self.tray_icon.run, daemon=True).start()  # show tray icon
+
+    '''
+    Handles the restoration of the gui after hiding.
+
+    Parameters:
+        self:
+            instance of object
+    '''
+    def restoreWindow(self):
+        self.master.deiconify()  # show the main window
+        self.tray_icon.setVisible(False)  # hide the tray icon
 
     '''
     Animates the trailing dots in connecting.
