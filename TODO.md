@@ -9,7 +9,6 @@ Basically a roadmap of what I would like to add and what needs to be done.
   * Add use cases
 
 ### High Priority - Improvements
-* Add start and end date to Log Analyzer
 * Unit testing -> add more
 * Improved Error Handling
 * Automation
