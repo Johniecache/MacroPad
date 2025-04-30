@@ -70,7 +70,7 @@ class MacroManager:
     def setActions(self, button_name, action):
         self.button_actions[button_name] = action # modifies action of button in memory
         self.saveActions() # immediately save everything to the file
-        Logger.log("INFO", f"Updated {button_name} to {self.button_actions[button_name]}") # log the update of the button and what its new action is
+        Logger.info(f"Updated {button_name} to {self.button_actions[button_name]}") # log the update of the button and what its new action is
 
     '''
     Gets all the actions of each button

@@ -130,7 +130,7 @@ class SerialManager:
         self:
             instance of object
     '''
-    def disconnect(self):
+    def close(self):
         if self.ser: # if there is a serial connection
             try: # handle errors with grace
                 self.ser.close() # close the serial connection

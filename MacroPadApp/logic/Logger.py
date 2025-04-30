@@ -1,5 +1,6 @@
 import logging
 import sys
+import os
 
 '''
 Class logger that wraps the built in logger inside of it
@@ -15,8 +16,11 @@ class Logger:
         if Logger.logger is None: # if no logger has been created yet
             Logger.logger = logging.getLogger("MacroPadLogger") # set new logger called MacroPadLogger
             Logger.logger.setLevel(logging.DEBUG) # minimum severity as debug
+            Logger.logger.propagate = False
 
-            file_handler = logging.FileHandler("MacroPad.log") # new file handler that writes logs to .log
+        if not Logger.logger.handlers: # check if handlers are attached, if not add them
+            log_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'resources', 'MacroPad.log') # get the log path (from MacroPad to resoruces) to update log file
+            file_handler = logging.FileHandler(log_path) # pass the log path (resource folder) to append the already existing log file
             file_handler.setLevel(logging.DEBUG) # log everything from debug
             file_format = logging.Formatter('%(levelname)s (%(asctime)s): %(message)s', datefmt='%Y-%m-%d %H:%M:%S') # define format for logs
             file_handler.setFormatter(file_format) # attach defined format to file writer
@@ -28,6 +32,8 @@ class Logger:
 
             Logger.logger.addHandler(file_handler) # add file handler to the logger
             Logger.logger.addHandler(console_handler) # add console handler to logger
+
+            print("Logger handler count:", len(Logger.logger.handlers))
 
     '''
     Handles the information types of logger

@@ -1,11 +1,11 @@
 {
-    "Button 1 pressed": "echo 'Opening Calculator Application' && calc.exe",
-    "Button 2 pressed": "echo 'Opening Notepad Application' && notepad.exe",
-    "Button 3 pressed": "echo 'Button 3 pressed' && command3.sh",
-    "Button 4 pressed": "echo 'Button 4 pressed' && command4.sh",
-    "Button 5 pressed": "echo 'Button 5 pressed' && command5.sh",
-    "Button 6 pressed": "echo 'Button 6 pressed' && command6.sh",
-    "Button 7 pressed": "echo 'Button 7 pressed' && command7.sh",
-    "Button 8 pressed": "echo 'Button 8 pressed' && command8.sh",
-    "Button 9 pressed": "echo 'Button 9 pressed' && command9.sh"
+    "Button 1 pressed": "calc.exe",
+    "Button 2 pressed": "echo 'Button 2 pressed'",
+    "Button 3 pressed": "",
+    "Button 4 pressed": "",
+    "Button 5 pressed": "",
+    "Button 6 pressed": "",
+    "Button 7 pressed": "",
+    "Button 8 pressed": "",
+    "Button 9 pressed": ""
 }
