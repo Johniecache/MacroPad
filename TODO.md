@@ -1,6 +1,7 @@
 # ToDo
 Basically a roadmap of what I would like to add and what needs to be done.
 ### Critical - Tasks
+* Add hide button functionality
 * Update Documentation:
   * Finish inline on unit test
   * Update Readme files
