@@ -14,3 +14,6 @@ The list below has everything needed for this project as well as some recommende
 | Copper Wick | 1 | used to desolder (recommended) | Lesnow Store | Lesnow-FT-01 | $9.99 | [Amazon](https://www.amazon.com/dp/B094GZ6CPZ?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_5&th=1) |
 | Pliers | 1 | used to straighten Copper Wire (recommended) | - | - | ~$10 | - |
 | Wire Cutter | 1 | used to straighten Copper Wire and cut/strip Insulated Wire (recommended) | Klein Tools Store | 1010 | $24.97 | [Amazon](https://www.amazon.com/gp/product/B0000302WX/ref=ewc_pr_img_1?smid=ATVPDKIKX0DER&psc=1) |
+
+Subtotal: $52.18
+Total: $232.62
