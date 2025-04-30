@@ -7,8 +7,6 @@ Basically a roadmap of what I would like to add and what needs to be done.
   * Clearer Project descriptions
   * Elaborate on features
   * Add use cases
-* Code Organization
-  * Reformat to ensure no "passing" methods
 
 ### High Priority - Improvements
 * Add start and end date to Log Analyzer
