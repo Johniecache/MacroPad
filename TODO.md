@@ -2,18 +2,17 @@
 Basically a roadmap of what I would like to add and what needs to be done.
 ### Critical - Tasks
 * Update Documentation:
+  * Finish inline on unit test
   * Update Readme files
   * Clearer Project descriptions
   * Elaborate on features
   * Add use cases
 * Code Organization
-  * MacroPadGUI needs to be broken up more
   * Reformat to ensure no "passing" methods
-* Print log lines (filtered) to console or to .txt file
 
 ### High Priority - Improvements
 * Add start and end date to Log Analyzer
-* Unit testing
+* Unit testing -> add more
 * Improved Error Handling
 * Automation
   * Firmware flashing
