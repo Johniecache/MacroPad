@@ -54,43 +54,70 @@ class TestMacroPadApp(unittest.TestCase):
             instance of object
     '''
     def setUp(self):
-        self.root = tk.Tk()
-        self.addCleanup(self.root.destroy)
+        self.root = tk.Tk() # create a new root from parent class Tkinter
+        self.addCleanup(self.root.destroy) # if test is complete then destroy the window
 
+    '''
+    Tests the initialization of components and managers.
+
+    Parameters:
+        self:
+            instance of object
+    '''
     @patch("threading.Thread.start")  # prevent the background thread from running
     def test_app_initializes_components_and_managers(self, mock_thread_start):
         app = MacroPadApp(self.root) # initialize MacroPadApp
 
-        self.assertIsInstance(app.serial_manager, SerialManager)
-        self.assertIsInstance(app.macro_manager, MacroManager)
-        self.assertIsInstance(app.auto_start_manager, AutoStartManager)
-        self.assertIsInstance(app.connection_manager, ConnectionManager)
+        self.assertIsInstance(app.serial_manager, SerialManager) # ensure SerialManager can be intantiated
+        self.assertIsInstance(app.macro_manager, MacroManager) # ensure MacroManager can be intantiated
+        self.assertIsInstance(app.auto_start_manager, AutoStartManager) # ensure AutoStartManager can be intantiated
+        self.assertIsInstance(app.connection_manager, ConnectionManager) # ensure ConnectionManager can be intantiated
 
+    '''
+    Tests connection and the connection manager class
+
+    Parameters:
+        self:
+            instance of object
+        mock_thread_start:
+            fake thread that will act as test
+    '''
     @patch("threading.Thread.start")  # prevents the background thread from running
     def test_connection_manager_thread_starts(self, mock_thread_start):
         app = MacroPadApp(self.root) # initialize MacroPadApp
 
-        mock_thread_start.assert_called_once()
+        mock_thread_start.assert_called_once() # start the mock thread
 
+    '''
+    Tests the subprocess and log process
+
+    Parameters:
+        self:
+            instance of object
+        mock_logger:
+            mock logger class
+        mock_popen:
+            mock popen multithread call
+    '''
     @patch("subprocess.Popen")
     @patch("gui.MacroPadGUI.Logger")
     def test_run_action_calls_subprocess_and_logs(self, mock_logger, mock_popen):
-        mock_logger_instance = mock_logger.return_value
-        mock_info = mock_logger_instance.info
+        mock_logger_instance = mock_logger.return_value # create instance of logger
+        mock_info = mock_logger_instance.info # test info logger of instance
 
-        test_cmd = "echo test"
-        expected_log_msg = f"Running command: {test_cmd}"
+        test_cmd = "echo test" # new string to put in cmd for debugging and confirmation
+        expected_log_msg = f"Running command: {test_cmd}" # tell user that the command is running with the echo
 
-        mock_info(expected_log_msg)
-        mock_info.assert_called_once_with(expected_log_msg)
+        mock_info(expected_log_msg) # log the expected log message
+        mock_info.assert_called_once_with(expected_log_msg) # check if they are the same
 
         app = MacroPadApp(self.root) # initialize MacroPadApp
-        app.runAction(test_cmd)
+        app.runAction(test_cmd) # run the test
 
-        mock_popen.assert_called_with(test_cmd, shell=True)
+        mock_popen.assert_called_with(test_cmd, shell=True) # assume true
 
-        mock_info.assert_any_call(expected_log_msg)
+        mock_info.assert_any_call(expected_log_msg) # check if passed expected log message
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main() # run the mock unit test
