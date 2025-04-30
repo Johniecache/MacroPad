@@ -2,7 +2,7 @@
 ### Overview
 This is where the majority of the external (non-coded) documentaiton for this project is held. This will range from written documentation to photo.
 
-## Setup Instructions
+## Hardware Setup Instructions
 Items needed: Solder, Soldering Iron, Insulated Tinned Wire, Copper Wire (optional), (9) 2-pin keyboard switches, Keyboard Frame (3D printed or otherwise), ATmega32U4 pro micro, Pliers/Drill
 
 1. Setup your workstation. Ensure all parts needed are at your disposal.
