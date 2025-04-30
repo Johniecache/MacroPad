@@ -83,7 +83,7 @@ class LogAnalyzerWindow:
 
         try: # handle errors with grace
             subprocess.run(cmd, check=True) # try to run executable file passing the cmd argument line
-            Logger.info(f"Log analysis ran with: {' '.join(cmd)}") # log that the process was successfully executed
+            Logger.info(f"Log analysis ran with: {' -- '.join(cmd)}") # log that the process was successfully executed
         except subprocess.CalledProcessError as e: # gracefully handle errors as to not crash program
             Logger.error(f"Log analysis failed: {e}") # log that the processes was unsuccessful
             messagebox.showerror("Analysis Failed", f"Log analysis failed to run.\nError: {e}") # tell the user of the failed execution
