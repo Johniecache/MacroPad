@@ -24,7 +24,20 @@ class LogAnalyzerWindow:
         self.top_level = tk.Toplevel(self.master) # child window floating above main window
         self.top_level.title("Log Analyzer") # title of the popup window
         self.top_level.geometry("300x200") # size of the popup window
+        self.top_level.protocol("WM_DELETE_WINDOW",self.onClose)
         self.createWidgets() # helper method to build buttons and textboxes
+
+    '''
+    Handles the closing of the log analyzer window
+
+    Parameters:
+        self:
+            instance of object
+    '''
+    def onClose(self):
+        self.top_level.destroy() # destory the window
+        Logger.info("Closing Analyzer window.")
+
 
     '''
     Helper method to create text boxes and buttons in window
