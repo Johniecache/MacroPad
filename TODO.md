@@ -6,7 +6,6 @@ Basically a roadmap of what I would like to add and what needs to be done.
   * Clearer Project descriptions
   * Elaborate on features
   * Add use cases
-* Upload from main PC
 
 ### High Priority - Improvements
 
