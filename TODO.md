@@ -2,7 +2,6 @@
 Basically a roadmap of what I would like to add and what needs to be done.
 ### Critical - Tasks
 * Update Documentation:
-  * Finish inline on unit test
   * Update Readme files
   * Clearer Project descriptions
   * Elaborate on features
@@ -10,9 +9,6 @@ Basically a roadmap of what I would like to add and what needs to be done.
 
 ### High Priority - Improvements
 * Unit testing -> add more
-* Automation
-  * Firmware flashing
-  * Easer setup process
 
 ### Medium Priority - Enchancements
 * Add better GUI visuals (dark/light mode)
