@@ -39,12 +39,8 @@ class LogAnalyzerWindow:
         self.log_type_entry.pack() # stick it into the window
 
         tk.Label(self.top_level, text="Date Start (YYYY-MM-DD):").pack() # text label for the start date
-        self.date_entry_start = tk.Entry(self.top_level) # textbox where user can type
-        self.date_entry_start.pack() # stick it into the window
-
-        tk.Label(self.top_level, text="Date End (YYYY-MM-DD):").pack() # text label for the end date
-        self.date_entry_end = tk.Entry(self.top_level) # textbox where user can type
-        self.date_entry_end.pack() # stick it into the window
+        self.date_filter_entry = tk.Entry(self.top_level) # textbox where user can type
+        self.date_filter_entry.pack() # stick it into the window
 
         tk.Label(self.top_level, text="Keyword:").pack() # text label for keyword
         self.keyword = tk.Entry(self.top_level) # textbox where user can type
@@ -69,15 +65,14 @@ class LogAnalyzerWindow:
             return # return early
 
         log_type = self.log_type_entry.get() # gets the value the user typed into the log type text field
-        start_date = self.date_entry_start.get() # gets the value the user typed into the date entry start text field
-        end_date = self.date_entry_end.get() # gets the value the user typed into the date entry end text field
+        date_filter = self.date_filter_entry.get() # gets the value the user typed into the date entry start text field
         keyword = self.keyword.get() # gets the value the user typed into the keyword text field
 
         cmd = [exe_path] # list with executable fiel path is the first element, will contain full command line argument to run
         if log_type: # if there is a log type entered
             cmd.extend(["--type", log_type]) # add it to the cmd argument
-        if start_date: # if there is a start date entered
-            cmd.extend(["--date", start_date]) # add it to the cmd argument
+        if date_filter: # if there is a start date entered
+            cmd.extend(["--date", date_filter]) # add it to the cmd argument
         if keyword: # if there is a key word that was entered
             cmd.extend(["--keyword", keyword]) # add it to the cmd argument
 
