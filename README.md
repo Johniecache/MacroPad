@@ -13,7 +13,8 @@ I've created my own hand-wired macro pad. It's a simple 3x3 keypad that has its 
 |------|-------------|------|
 | ATmega32U4 | Microcontroller | [Amazon](https://www.amazon.com/dp/B0B6HYLC44?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1) |
 | Outemu Switches | Standard 2-pin Keyboard Switches | [Amazon](https://www.amazon.com/dp/B073WC1NXL?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_3&th=1) |
-Full Bill of Materials in /BOM.md
+
+Full Bill of Materials in '/BOM.md'
 
 ## Architecture Diagram
 ![architecture_diagram](https://github.com/user-attachments/assets/a1dcac8c-d3f3-4a46-a603-4205250ca172)
