@@ -10,7 +10,6 @@ Basically a roadmap of what I would like to add and what needs to be done.
 
 ### High Priority - Improvements
 * Unit testing -> add more
-* Improved Error Handling
 * Automation
   * Firmware flashing
   * Easer setup process
