@@ -2,10 +2,7 @@
 Basically a roadmap of what I would like to add and what needs to be done.
 ### Critical - Tasks
 * Update Documentation:
-  * Update Readme files
-  * Clearer Project descriptions
-  * Elaborate on features
-  * Add use cases
+  * Update MacroPadApp and its subfolders readme.md's
 
 ### High Priority - Improvements
 
