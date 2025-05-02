@@ -1,11 +1,16 @@
-# Macro Pad Application
-This is where all the source files for the Macro Pad Application are neatly organized between gui, logic, resources, and testing files.
+# MacroPadApp
+The `MacroPadApp` serves as the central hub for interacting with the 3x3 macro pad.  
+It provides a graphical user interface (GUI) for configuring macros and managing the device's functionality.
 
-### gui
-This stores all of the functionality of the gui. This could be considered the presentation architecture of a 3 layered design.
+## Features
+- Intuitive GUI for macro configuration
+- Real-time updates to the macro pad's behavior
+- Integration with the custom firmware for seamless operation
 
-### logic
-This stores all of the logical analysis or "under the hood" files that alot of the processing gets done in. 
+## Usability
+Designed for users who need quick access to customizable macros, enhancing productivity in applications like video editing, programming, and gaming.
 
-### resources
-This folder stores all of the files for saves and what not. I put mine in there as an example of how it should look.
+## Use Cases
+- Assigning complex key sequences to a single button
+- Switching between different macro profiles
+- Monitoring macro pad status and activity
