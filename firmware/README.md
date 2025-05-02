@@ -10,11 +10,12 @@ This firmware reads 9 directly-wired mechanical switches connected to digital pi
 - Configurable keymap support via serial input
 - HID keypress transmission to host PC
 
-## Build & Flash Instructions
+## Instructions (Build & Flash)
 1. Open the firmware project in the Arduino IDE
-2. Select the board: **Arduino Leonardo** (same as ATmega32U4)
+2. Select the board: ATmega32U4 (Arduino Leonardo)
 3. Connect the Pro Micro via USB
-4. Flash the firmware
+4. Check the COM#, this may cause issue when the MacroPadApp tries to connect to device
+5. Flash the firmware
 
 ## Dependencies
 - Arduino HID library
