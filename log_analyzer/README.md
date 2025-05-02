@@ -9,9 +9,10 @@ The .rs file is the source code to the executable that is provided. The .exe fil
 - Filters based on key events, timing, or user-defined flags
 - Fast execution with low memory usage
 
-## Instructions for downloading .rs file directly
+## Instructions (troubleshooting)
+If an error ocures where the log analyzer cannot find the log file location then do the following steps below
 * Download the .rs file
 * Open powershell
   * Enter: "cd FULL\\FILE\\LOCATION\\DIRECTORY"
   * Enter: Cargo build --release
-* Move the created .exe into the "MacroPad" folder
+* Move the created .exe into the "MacroPad/log_analyzer" folder
