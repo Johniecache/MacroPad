@@ -1,6 +1,9 @@
 # MacroPad
 ## Overview
 I've created my own hand-wired macro pad. It's a simple 3x3 keypad that has its own firmware i've created in C++. Along with that i've made a Python GUI that will display a 3x3 button matrix (see below) that allows the user to edit the macro of the corresponding button. There is also a Rustc executable that will analyze the .log file associated with the marco pad in a multithreaded analysis.
+## Use Case
+3x3 Macro Pad for ease of use of macros and longer or multi-key functions (cntl+c) as one button.
+
 ## Features
 * Hand-wired mechanical 3x3 keypad soldered together
 * 3D printed custom case
