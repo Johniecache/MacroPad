@@ -1,6 +1,8 @@
 # All images of project
 ### Macro Pad Diagram on Paper
 ![handsketch_diagram](https://github.com/user-attachments/assets/34b2e4ac-f7e1-432b-ba49-e83b8887cf33)
+### Macro Pad Diagram on KiCad
+[MacroPad.pdf](https://github.com/user-attachments/files/20731085/MacroPad.pdf)
 ### Completed Macro Pad Images
 #### Side Views
 ![side_view_one](https://github.com/user-attachments/assets/4438b7c8-800b-420d-a7a0-d44e78996d73)
