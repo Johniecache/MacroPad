@@ -1,4 +1,4 @@
-![MacroPad](https://github.com/user-attachments/assets/f4e078fd-9c72-42ba-848c-f53031c09d7f)# All images of project
+# All images of project
 ### Macro Pad Diagram on Paper
 ![handsketch_diagram](https://github.com/user-attachments/assets/34b2e4ac-f7e1-432b-ba49-e83b8887cf33)
 ### Macro Pad Diagram on KiCad
